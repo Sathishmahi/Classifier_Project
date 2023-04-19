@@ -5,8 +5,10 @@ from CNN_Classifier.constant import *
 
 
 content=read_yaml()
-log_dir=make_dirs([content.get("logs_root_dir_name")])
-log_file_path = os.path.join(log_dir, "running_logs.log")
+print(content)
+log_dir_name=content.get("logs_root_dir_name")
+make_dirs([log_dir_name])
+log_file_path = os.path.join(log_dir_name, "running_logs.log")
 
 format = "[ %(asctime)s    %(levelname)   s%(module)s ]  [ %(message)s ]"
 logging.basicConfig(
