@@ -13,3 +13,16 @@ prepare_base_model:
   base_model_name: base_model.h5
   updated_model_dir_name: updated_base_model
   updated_model_name: updated_base_model.h5
+
+prepare_callbacks: 
+  root_dir: prepare_callbacks
+  tb_logs_dir: tensorboard_logs
+  ckpt_best_model_name: model.h5
+  ckpt_model_dir_name: ckpt
+
+
+model_training:
+  root_dir: training
+  trained_model_dir_name: trained_model
+  trained_model_name: trained_model.h5
+ 

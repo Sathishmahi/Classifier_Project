@@ -22,3 +22,14 @@ BaseModelConfig=namedtuple("BaseModelConfig",
   "no_of_classes"
 ]
 )
+
+
+PreapreCallBacksConfig=namedtuple("PreapreCallBacksConfig", 
+[
+    "root_dir",
+    "tb_logs_dir",
+    "ckpt_model_dir_name",
+    "ckpt_best_model_name"
+    
+]
+)

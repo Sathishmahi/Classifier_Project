@@ -1,5 +1,5 @@
 from CNN_Classifier.utils import read_yaml,make_dirs
-from CNN_Classifier.entity import DataIngestionConfig,BaseModelConfig
+from CNN_Classifier.entity import DataIngestionConfig,BaseModelConfig,PreapreCallBacksConfig
 from CNN_Classifier.constant import *
 import os
 import numpy as np
@@ -15,6 +15,7 @@ class Configuration:
         #### all config
         self.data_ingestion_config=self.get_data_ingestion_config()
         self.base_model_config=self.get_base_model_config()
+        self.prepare_callbacks_config=self.get_prepare_callbacks()
 
     def get_data_ingestion_config(self)->DataIngestionConfig:
         try:
@@ -57,5 +58,23 @@ class Configuration:
             image_size=image_size,no_of_classes=no_of_classes)
 
             return basic_model_config
+        except Exception as e:
+            raise e
+
+    def get_prepare_callbacks(self)->PreapreCallBacksConfig:
+        try:
+            prepare_callbacks_config_attr=self.config_content.get("prepare_callbacks")
+            root_dir=os.path.join(self.artifact_root_dir,prepare_callbacks_config_attr.get("root_dir"))
+            tb_logs_dir=os.path.join(root_dir,prepare_callbacks_config_attr.get("tb_logs_dir"))
+            ckpt_model_dir_name=os.path.join(root_dir,prepare_callbacks_config_attr.get("ckpt_model_dir_name"))
+            ckpt_best_model_name=os.path.join(ckpt_model_dir_name,prepare_callbacks_config_attr.get("ckpt_best_model_name"))
+            make_dirs([root_dir,tb_logs_dir,ckpt_model_dir_name])
+
+            prepare_callbacks_config=PreapreCallBacksConfig(root_dir=root_dir, 
+            tb_logs_dir=tb_logs_dir, 
+            ckpt_model_dir_name=ckpt_model_dir_name,
+            ckpt_best_model_name=ckpt_best_model_name)
+
+            return prepare_callbacks_config
         except Exception as e:
             raise e
