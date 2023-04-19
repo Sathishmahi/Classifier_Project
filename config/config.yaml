@@ -1,0 +1,3 @@
+# ### all root_dir names
+artifact_root_dir_name: artifacts
+logs_root_dir_name: running_logs
