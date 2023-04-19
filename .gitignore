@@ -131,3 +131,4 @@ node_modules
 test.*
 demo.*
 package*
+artifacts
