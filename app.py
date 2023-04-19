@@ -1,15 +1,20 @@
 import streamlit as st
 import os 
+import cv2
 st.title("Classifier")
 st.header("Welcome to Classifier")
 st.subheader("by Sathish")
 
+#  streamlit run app.py --server.port 8501
+# npx localtunnel --port 8501
 try:
-    # for _ in range(int(no_of_classes)):
-    file_details=st.file_uploader(label="select files note class name and file name must be same", type=['mp4','AVI','WebM'], accept_multiple_files=True,
+    file_details=st.file_uploader(label="select files note class name and file name must be same", 
+                                  type=['mp4','AVI','WebM'], accept_multiple_files=True,
                 disabled=False, label_visibility="visible")
-    for file_name in file_details:
-        os.makedirs(file_name.name,exist_ok=True)
+    if not file_details:
+        for i in file_details:
+            with open(f'demo_{i}.webm'.name, mode='wb') as f:
+                f.write(file_details.read())
 
 except ValueError as e:
     st.exception(e)
